@@ -1,4 +1,8 @@
-# Configuration file for the Sphinx documentation builder.
+"""
+Sphinx configuration file for the Lumache project documentation.
+
+Sets project metadata, extensions, HTML theme, and intersphinx mappings.
+"""
 
 # -- Project information
 
