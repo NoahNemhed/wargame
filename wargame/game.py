@@ -3,18 +3,28 @@
 from wargame.deck import Deck
 from wargame.player import Player
 from wargame.card import Card
+import random
 
 
 class Game:
     """Handles setup, rounds, and game logic for War."""
 
-    def __init__(self, player1_name="Player 1", player2_name="Computer"):
+    def __init__(self, player1_name="Player 1", player2_name="Computer", difficulty="normal"):
         """Initialize the game with two players and a deck."""
         self.deck = Deck()
         self.player1 = Player(player1_name)
         self.player2 = Player(player2_name)
+        self.difficulty = difficulty.lower()
         self.round_count = 0
         self.winner = None
+
+
+    def set_difficulty(self, level):
+        """Change AI difficulty (normal or hard)."""
+        level = level.lower()
+        if level not in ["normal", "hard"]:
+            raise ValueError("Difficulty must be 'normal' or 'hard'.")
+        self.difficulty = level
 
     def start(self):
         """Start a new game: shuffle deck and deal cards evenly."""
@@ -36,9 +46,28 @@ class Game:
             self.winner = self.player1
             return f"Game Over: {self.player1.name} wins!"
 
-        # Each player plays their top card
+        # Player 1 always plays top card
         card1 = self.player1.play_card()
-        card2 = self.player2.play_card()
+
+        # --- (AI) logic ---
+        if self.difficulty == "normal":
+            # Normal mode: always play top card just as player1 50% chance for both
+            card2 = self.player2.play_card()
+
+        else:  # Hard mode: draws card from both top_deck and bottom_deck, 80% chance of picking the best card, 20% picking the worst card
+            top_card = self.player2.hand[0]
+            bottom_card = self.player2.hand[-1]
+            print(f"TOP CARD : {top_card} : BOTTOM CARD : {bottom_card}")
+
+            # 80% chance: play the stronger of top / bottom card
+            if random.random() < 0.8:
+                if bottom_card.value > top_card.value:
+                    card2 = self.player2.hand.pop(-1)
+                else:
+                    card2 = self.player2.hand.pop(0)
+            else:
+                # 20% chance: AI chooses the top card no matter what card was the best option
+                card2 = self.player2.hand.pop(0)
 
         self.round_count += 1
         result = f"Round {self.round_count}: {self.player1.name} plays {card1}, {self.player2.name} plays {card2}.\n"
@@ -48,6 +77,9 @@ class Game:
             result += f"{self.player1.name} wins the round!"
         elif card2.value > card1.value:
             self.player2.add_cards([card1, card2])
+            if self.difficulty == "hard":
+                # If AI wins, we shuffle the deck
+                random.shuffle(self.player2.hand)
             result += f"{self.player2.name} wins the round!"
         else:
             result += self.handle_war([card1], [card2])
