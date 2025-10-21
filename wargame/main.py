@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Entry point for the War card game."""
+"""main entry point for the War card game."""
 
-import shell
+from wargame.shell import WarShell
 
 
 def main():
-    """Run the War game shell."""
-    print("Welcome to the War card game!")
-    shell.Shell().cmdloop()
+    """Run the War command-line shell."""
+    print(
+        "\nWelcome to the WAR card game!\n"
+        "Type 'help' or '?' for available commands.\n"
+    )
+    WarShell().cmdloop()
 
 
 if __name__ == "__main__":
