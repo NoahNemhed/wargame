@@ -5,6 +5,7 @@
 
 import cmd
 from wargame.game import Game
+from wargame.scoreboard import Scoreboard
 
 
 class WarShell(cmd.Cmd):
@@ -18,6 +19,7 @@ class WarShell(cmd.Cmd):
         "\n  set_name (<p1> or <p2>) <new_name> -> Change name of player1 "
         "(<p1>) or player2 (<p2>)"
         "\n  set_ai (<normal> or <hard> -> Changes AI difficulty (default normal)"
+        "\n  show_scoreboard         -> Shows the current scoreboard"
         "\n  play_one_round          -> Play a single round"
         "\n  auto_play [num_rounds]  -> Auto-play N rounds "
         "(defaults to 5 if no number given)"
@@ -34,6 +36,7 @@ class WarShell(cmd.Cmd):
         """Initialize the shell with no active game."""
         super().__init__()
         self.game = None
+        self.scoreboard = Scoreboard()
 
     # -----------------------------------------------------
     # Game control commands
@@ -165,8 +168,17 @@ class WarShell(cmd.Cmd):
             else:
                 print("\nIt's a draw after 1000 rounds!\n")
                 return
+        winner = self.game.get_winner()
+        print(f"\n🏆 Winner: {winner.name}\n")
 
-        print(f"\n🏆 Winner: {self.game.get_winner().name}\n")
+        # Saves winner & loser to scoreboard.json
+        if winner:
+            loser = (
+                self.game.player1.name
+                if winner == self.game.player2
+                else self.game.player2.name
+            )
+            self.scoreboard.record_result(winner.name, loser)
 
     def do_exit(self, _):
         """Exit the game."""
@@ -196,3 +208,7 @@ class WarShell(cmd.Cmd):
             return
         self.game.set_difficulty(level.lower())
         print(f"AI difficulty set to: {level.capitalize()}")
+
+    def do_show_scoreboard(self):
+        """Show the scoreboard with all player statistics."""
+        print(self.scoreboard.show())
