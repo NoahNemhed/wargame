@@ -8,5 +8,15 @@
         "games_played": 1,
         "games_won": 0,
         "games_lost": 1
+    },
+    "peter": {
+        "games_played": 1,
+        "games_won": 1,
+        "games_lost": 0
+    },
+    "johan": {
+        "games_played": 1,
+        "games_won": 0,
+        "games_lost": 1
     }
 }

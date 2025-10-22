@@ -1,4 +1,5 @@
 """Main game logic for the War card game."""
+
 import random
 from wargame.deck import Deck
 from wargame.player import Player

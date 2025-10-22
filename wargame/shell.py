@@ -7,6 +7,7 @@ import cmd
 from wargame.game import Game
 from wargame.scoreboard import Scoreboard
 
+
 class WarShell(cmd.Cmd):
     """Interactive shell to play the War card game."""
 
@@ -208,6 +209,6 @@ class WarShell(cmd.Cmd):
         self.game.set_difficulty(level.lower())
         print(f"AI difficulty set to: {level.capitalize()}")
 
-    def do_show_scoreboard(self, arg):
+    def do_show_scoreboard(self):
         """Show the scoreboard with all player statistics."""
         print(self.scoreboard.show())

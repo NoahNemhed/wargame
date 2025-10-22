@@ -47,7 +47,11 @@ class Scoreboard:
             return "No games have been played yet."
 
         lines = ["SCOREBOARD"]
-        for name, data in sorted(self.scores.items(), key=lambda x: x[1]["games_won"], reverse=True):
+        for name, data in sorted(
+            self.scores.items(),
+            key=lambda x: x[1]["games_won"],
+            reverse=True,
+        ):
             games = data["games_played"]
             rate = (data["games_won"] / games * 100) if games > 0 else 0
             lines.append(
