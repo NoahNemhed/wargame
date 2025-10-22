@@ -1,0 +1,12 @@
+{
+    "noah": {
+        "games_played": 1,
+        "games_won": 1,
+        "games_lost": 0
+    },
+    "erik": {
+        "games_played": 1,
+        "games_won": 0,
+        "games_lost": 1
+    }
+}
