@@ -1,4 +1,4 @@
-Decide on a license and put it here, for example a MIT license.
+MIT License
 
 ---
 
