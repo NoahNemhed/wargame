@@ -1,4 +1,4 @@
-"""Represents a standard 52-card deck"""
+"""Represents a standard 52-card deck."""
 
 import random
 from wargame.card import Card
@@ -8,15 +8,13 @@ class Deck:
     """A deck containing 52 unique playing cards."""
 
     def __init__(self):
-        """Creates a new deck and shuffles it."""
+        """Create a new deck and shuffles it."""
         self.cards = []
         self.reset()
 
     def reset(self):
         """Reset the deck to contain all 52 cards and shuffle them."""
-        self.cards = [Card(rank, suit)
-                      for suit in Card.suits
-                      for rank in Card.ranks]
+        self.cards = [Card(rank, suit) for suit in Card.suits for rank in Card.ranks]
         self.shuffle()
 
     def shuffle(self):

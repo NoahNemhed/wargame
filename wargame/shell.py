@@ -13,11 +13,14 @@ class WarShell(cmd.Cmd):
     intro = (
         "\n🎴 Welcome to the War card game! 🎴\n"
         "\nCommands:"
-        "\n  start [name1] [name2]   -> Start a new game (Defaults to 'Player 1' vs 'Computer' if no names given)"
-        "\n  set_name (<p1> or <p2>) <new_name> -> Change name of player1 (<p1>) or player2 (<p2>)"
+        "\n  start [name1] [name2]   -> Start a new game "
+        "(Defaults to 'Player 1' vs 'Computer' if no names given)"
+        "\n  set_name (<p1> or <p2>) <new_name> -> Change name of player1 "
+        "(<p1>) or player2 (<p2>)"
         "\n  set_ai (<normal> or <hard> -> Changes AI difficulty (default normal)"
         "\n  play_one_round          -> Play a single round"
-        "\n  auto_play [num_rounds]  -> Auto-play N rounds (defaults to 5 if no number given)"
+        "\n  auto_play [num_rounds]  -> Auto-play N rounds "
+        "(defaults to 5 if no number given)"
         "\n  show_status             -> Show current card counts"
         "\n  show_rules              -> Display the rules of War"
         "\n  restart_game            -> Restart the same game"
@@ -37,8 +40,11 @@ class WarShell(cmd.Cmd):
     # -----------------------------------------------------
 
     def do_start(self, arg):
-        """Start a new game. Usage: start [player1] [player2]
-        If no names are given, defaults to 'Player 1' vs 'Computer'."""
+        """
+        Start a new game. Usage: start [player1] [player2].
+
+        If no names are given, defaults to 'Player 1' vs 'Computer'.
+        """
         args = arg.split()
         player1 = args[0] if len(args) > 0 else "Player 1"
         player2 = args[1] if len(args) > 1 else "Computer"
@@ -49,7 +55,7 @@ class WarShell(cmd.Cmd):
         print(self.game)
 
     def do_set_name(self, arg):
-        """Change a player's name. Usage: set_name (<p1> or <p2>) <new_name>"""
+        """Change a player's name. Usage: set_name (<p1> or <p2>) <new_name>."""
         if not self._check_game_started():
             return
 
@@ -75,7 +81,6 @@ class WarShell(cmd.Cmd):
 
         print(f"Name changed: {old_name} -> {new_name}")
 
-
     def do_play_one_round(self, _):
         """Play one round manually."""
         if not self._check_game_started():
@@ -84,8 +89,12 @@ class WarShell(cmd.Cmd):
         print(self.game)
 
     def do_auto_play(self, arg):
-        """Play multiple rounds automatically. Usage: auto_play [num_rounds]
-        If no number is given, defaults to 5 rounds."""
+        """
+        Play multiple rounds automatically.
+
+        Usage: auto_play [num_rounds]
+        If no number is given, defaults to 5 rounds.
+        """
         if not self._check_game_started():
             return
         try:
@@ -159,7 +168,6 @@ class WarShell(cmd.Cmd):
 
         print(f"\n🏆 Winner: {self.game.get_winner().name}\n")
 
-
     def do_exit(self, _):
         """Exit the game."""
         print("Thanks for playing War! Goodbye")
@@ -171,9 +179,16 @@ class WarShell(cmd.Cmd):
             print("Start a new game first using 'start'.")
             return False
         return True
-    
+
     def do_set_ai(self, level):
-        """Change AI difficulty. 'Normal' is default, 'Hard' changes so AI will pick a card from both the top and bottom of the deck \n and have an 80% chance to play the strongest card Usage: set_ai (<normal> or <hard>)"""
+        """
+        Change AI difficulty.
+
+        'Normal' is default. 'Hard' changes so AI will pick a card from both the top and
+        bottom of the deck and has an 80% chance to play the strongest card.
+
+        Usage: set_ai (<normal> or <hard>)
+        """
         if not self._check_game_started():
             return
         if level.lower() not in ["normal", "hard"]:
