@@ -3,6 +3,7 @@ from wargame.game import Game
 from wargame.card import Card
 from unittest.mock import patch
 
+
 class TestAIDifficulty(unittest.TestCase):
     """Tests for AI difficulty behavior in the War game."""
 
@@ -26,23 +27,19 @@ class TestAIDifficulty(unittest.TestCase):
     def test_normal_mode_plays_top_card(self):
         """AI in normal mode should always play the top card."""
         self.game.set_difficulty("normal")
-        self.game.player2.hand = [
-            Card("2", "Hearts"),
-            Card("Ace", "Clubs")
-        ]
+        self.game.player2.hand = [Card("2", "Hearts"), Card("Ace", "Clubs")]
         top_card = self.game.player2.hand[0]
         self.game.player1.hand = [Card("3", "Spades")]
         self.game.play_round()
-        self.assertNotIn(top_card, self.game.player2.hand, "Top card should have been played")
+        self.assertNotIn(
+            top_card, self.game.player2.hand, "Top card should have been played"
+        )
 
     def test_hard_mode_prefers_stronger_card(self):
         """AI in hard mode should pick the stronger card (top vs bottom). But its 80% chance to pick the top card instead of the strongest, so we use unittest.mock.patch to force random to return 0.1"""
         self.game.set_difficulty("hard")
         # Top is weak, bottom is strong
-        self.game.player2.hand = [
-            Card("3", "Hearts"),
-            Card("King", "Spades")
-        ]
+        self.game.player2.hand = [Card("3", "Hearts"), Card("King", "Spades")]
         self.game.player1.hand = [Card("4", "Clubs")]
 
         # Force random.random() to return 0.1 so it chooses the best card

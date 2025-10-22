@@ -50,7 +50,9 @@ class TestShell(unittest.TestCase):
     def test_cheat_runs_without_crash(self):
         """cheat should complete without crashing (win or draw)."""
         self.shell.do_start("")
-        self.shell.do_cheat("")  # Should not raise any errors and not stuck in a infinite loop
+        self.shell.do_cheat(
+            ""
+        )  # Should not raise any errors and not stuck in a infinite loop
 
     def test_restart_game_creates_new_instance(self):
         """restart_game should create a new Game instance."""

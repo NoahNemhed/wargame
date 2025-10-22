@@ -1,15 +1,15 @@
 """Main game logic for the War card game."""
-
+import random
 from wargame.deck import Deck
 from wargame.player import Player
-from wargame.card import Card
-import random
 
 
 class Game:
     """Handles setup, rounds, and game logic for War."""
 
-    def __init__(self, player1_name="Player 1", player2_name="Computer", difficulty="normal"):
+    def __init__(
+        self, player1_name="Player 1", player2_name="Computer", difficulty="normal"
+    ):
         """Initialize the game with two players and a deck."""
         self.deck = Deck()
         self.player1 = Player(player1_name)
@@ -17,7 +17,6 @@ class Game:
         self.difficulty = difficulty.lower()
         self.round_count = 0
         self.winner = None
-
 
     def set_difficulty(self, level):
         """Change AI difficulty (normal or hard)."""
@@ -53,8 +52,9 @@ class Game:
         if self.difficulty == "normal":
             # Normal mode: always play top card just as player1 50% chance for both
             card2 = self.player2.play_card()
-
-        else:  # Hard mode: draws card from both top_deck and bottom_deck, 80% chance of picking the best card, 20% picking the worst card
+        # Hard mode: draws card from both top_deck and bottom_deck,
+        # 80% chance of picking the best card, 20% picking the worst card
+        else:
             top_card = self.player2.hand[0]
             bottom_card = self.player2.hand[-1]
             print(f"TOP CARD : {top_card} : BOTTOM CARD : {bottom_card}")
@@ -66,12 +66,15 @@ class Game:
                 else:
                     card2 = self.player2.hand.pop(0)
             else:
-                # 20% chance: AI chooses the top card no matter what card was the best option
+                # 20% chance: AI chooses the top card no matter
+                # what card was the best option
                 card2 = self.player2.hand.pop(0)
 
         self.round_count += 1
-        result = f"Round {self.round_count}: {self.player1.name} plays {card1}, {self.player2.name} plays {card2}.\n"
-
+        result = (
+            f"Round {self.round_count}: {self.player1.name} plays {card1}, "
+            f"{self.player2.name} plays {card2}.\n"
+        )
         if card1.value > card2.value:
             self.player1.add_cards([card1, card2])
             result += f"{self.player1.name} wins the round!"
@@ -88,15 +91,24 @@ class Game:
 
     def handle_war(self, pile1, pile2):
         """Handle a 'war' when players draw cards of equal value."""
-        result = "\nWar! Each player draws three face-down cards and one face-up card.\n"
+        result = (
+            "\nWar! Each player draws three face-down cards and one face-up card.\n"
+        )
 
         # Check if players can continue war
         if self.player1.card_count() < 4:
             self.winner = self.player2
-            return f"{self.player1.name} cannot continue war. {self.player2.name} wins the game!"
+            return (
+                f"{self.player1.name} cannot continue war. "
+                f"{self.player2.name} wins the game!"
+            )
+
         if self.player2.card_count() < 4:
             self.winner = self.player1
-            return f"{self.player2.name} cannot continue war. {self.player1.name} wins the game!"
+            return (
+                f"{self.player2.name} cannot continue war. "
+                f"{self.player1.name} wins the game!"
+            )
 
         # Each player draws 3 face-down + 1 face-up
         for _ in range(3):
@@ -108,7 +120,10 @@ class Game:
         pile1.append(card1)
         pile2.append(card2)
 
-        result += f"{self.player1.name} reveals {card1}, {self.player2.name} reveals {card2}.\n"
+        result += (
+            f"{self.player1.name} reveals {card1}, "
+            f"{self.player2.name} reveals {card2}.\n"
+        )
 
         # Compare the new face-up cards
         if card1.value > card2.value:

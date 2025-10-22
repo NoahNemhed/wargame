@@ -1,11 +1,25 @@
 """Represents a single playing card in the War game."""
 
+
 class Card:
     """A single playing card with rank, suit, and value."""
 
     suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
-    ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10",
-             "Jack", "Queen", "King", "Ace"]
+    ranks = [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "Jack",
+        "Queen",
+        "King",
+        "Ace",
+    ]
 
     def __init__(self, rank: str, suit: str):
         """Initialize a card with a rank and a suit."""
@@ -19,7 +33,7 @@ class Card:
         self.value = Card.ranks.index(rank) + 2  # 2–14 (Ace high)
 
     def __str__(self):
-        """Returns a readable string of the card."""
+        """Return a readable string of the card."""
         return f"{self.rank} of {self.suit}"
 
     def __lt__(self, other):
