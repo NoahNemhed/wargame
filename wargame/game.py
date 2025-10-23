@@ -54,11 +54,11 @@ class Game:
         # Two player mode
         if getattr(self, "is_two_player", False):
             if not getattr(self, "auto_mode", False):
-                input(f"{self.player1.name}, press Enter to play your card...")
+                input(f"{self.player1.name}, press Enter to play your card..." + "\n")
             card1 = self.player1.play_card()
 
             if not getattr(self, "auto_mode", False):
-                input(f"{self.player2.name}, press Enter to play your card...")
+                input(f"{self.player2.name}, press Enter to play your card..." + "\n")
             card2 = self.player2.play_card()
 
         # Single player mode
@@ -74,7 +74,7 @@ class Game:
                 # Hard mode: AI looks at both top and bottom card
                 top_card = self.player2.hand[0]
                 bottom_card = self.player2.hand[-1]
-                print(f"TOP CARD : {top_card} : BOTTOM CARD : {bottom_card}")
+                
 
                 # 80% chance to play stronger card
                 if random.random() < 0.8:
@@ -95,13 +95,13 @@ class Game:
 
         if card1.value > card2.value:
             self.player1.add_cards([card1, card2])
-            result += f"{self.player1.name} wins the round!"
+            result += f"{self.player1.name} wins the round!"+ "\n"
         elif card2.value > card1.value:
             self.player2.add_cards([card1, card2])
             if not getattr(self, "is_two_player", False) and self.difficulty == "hard":
                 # Only shuffle for AI after a win
                 random.shuffle(self.player2.hand)
-            result += f"{self.player2.name} wins the round!"
+            result += f"{self.player2.name} wins the round!"+ "\n"
         else:
             result += self.handle_war([card1], [card2])
 
