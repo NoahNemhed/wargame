@@ -7,4 +7,4 @@ dice/doc
 guess/doc
 build/
 coverage.xml
-readme.txt
+wargame/data/scoreboard.json

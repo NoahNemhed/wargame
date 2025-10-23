@@ -53,6 +53,10 @@ class WarShell(cmd.Cmd):
             p1, p2 = args
             self.game = Game(p1, p2)
             self.game.start(is_two_player=True)
+        elif len(args) == 1:
+            p1 = args[0]
+            self.game = Game(p1, "Computer")
+            self.game.start(is_two_player=False)
         else:
             self.game = Game()
             self.game.start(is_two_player=False)
