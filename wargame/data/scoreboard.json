@@ -1,13 +1,13 @@
 {
     "noah": {
-        "games_played": 2,
-        "games_won": 2,
+        "games_played": 3,
+        "games_won": 3,
         "games_lost": 0
     },
     "erik": {
-        "games_played": 1,
+        "games_played": 2,
         "games_won": 0,
-        "games_lost": 1
+        "games_lost": 2
     },
     "peter": {
         "games_played": 1,
@@ -25,13 +25,13 @@
         "games_lost": 1
     },
     "Computer": {
-        "games_played": 1,
-        "games_won": 1,
-        "games_lost": 0
+        "games_played": 6,
+        "games_won": 3,
+        "games_lost": 3
     },
     "Player 1": {
-        "games_played": 1,
-        "games_won": 0,
-        "games_lost": 1
+        "games_played": 6,
+        "games_won": 3,
+        "games_lost": 3
     }
 }

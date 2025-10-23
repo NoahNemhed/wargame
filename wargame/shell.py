@@ -49,12 +49,14 @@ class WarShell(cmd.Cmd):
         If no names are given, defaults to 'Player 1' vs 'Computer'.
         """
         args = arg.split()
-        player1 = args[0] if len(args) > 0 else "Player 1"
-        player2 = args[1] if len(args) > 1 else "Computer"
-
-        self.game = Game(player1, player2)
-        self.game.start()
-        print(f"\nNew game started between {player1} and {player2}!\n")
+        if len(args) == 2:
+            p1, p2 = args
+            self.game = Game(p1, p2)
+            self.game.start(is_two_player=True)
+        else:
+            self.game = Game()
+            self.game.start(is_two_player=False)
+        
         print(self.game)
 
     def do_set_name(self, arg):
@@ -105,14 +107,16 @@ class WarShell(cmd.Cmd):
         except ValueError:
             print("Invalid number of rounds. Usage: auto_play [num_rounds]")
             return
+        
+        self.game.auto_mode = True
 
         for _ in range(rounds):
             if self.game.is_game_over():
                 break
             print(self.game.play_round())
+            print(self.game)
 
-        print("\nFinal state:\n")
-        print(self.game)
+        self.game.auto_mode = False
 
     def do_show_status(self, _):
         """Display the current card counts."""
@@ -149,6 +153,7 @@ class WarShell(cmd.Cmd):
             return
 
         print("Cheating... fast-forwarding to the end!\n")
+        self.game.auto_mode = True
 
         max_rounds = 1000  # Max rounds
         rounds = 0
@@ -169,6 +174,7 @@ class WarShell(cmd.Cmd):
                 print("\nIt's a draw after 1000 rounds!\n")
                 return
         winner = self.game.get_winner()
+        self.game.auto_mode = False
         print(f"\n🏆 Winner: {winner.name}\n")
 
         # Saves winner & loser to scoreboard.json
