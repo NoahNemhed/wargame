@@ -21,7 +21,7 @@ class TestShell(unittest.TestCase):
         self.shell.do_start("")
         self.assertIsNotNone(self.shell.game)
         self.assertEqual(self.shell.game.player1.name, "Player 1")
-        self.assertEqual(self.shell.game.player2.name, "Player 2")
+        self.assertEqual(self.shell.game.player2.name, "Computer")
 
     def test_do_exit_returns_true(self):
         """do_exit should return True."""

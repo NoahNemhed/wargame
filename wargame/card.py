@@ -4,7 +4,7 @@
 class Card:
     """A single playing card with rank, suit, and value."""
 
-    suits = ["Hearts", "Diamonds", "Clubs", "Spades"]
+    suits = ["♥️", "♦️", "♣️", "♠️"]
     ranks = [
         "2",
         "3",

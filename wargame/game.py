@@ -73,8 +73,8 @@ class Game:
 
         self.round_count += 1
         result = (
-            f"Round {self.round_count}: {self.player1.name} plays {card1}, "
-            f"{self.player2.name} plays {card2}.\n"
+            f"Round {self.round_count}: {self.player1.name} plays {card1} , "
+            f"{self.player2.name} plays {card2} .\n"
         )
         if card1.value > card2.value:
             self.player1.add_cards([card1, card2])

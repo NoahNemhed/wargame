@@ -26,13 +26,13 @@ class TestPlayer(unittest.TestCase):
 
     def test_add_single_card(self):
         """Adding a single Card should work."""
-        card = Card("Ace", "Hearts")
+        card = Card("Ace", "♥️")
         self.player.add_cards(card)
         self.assertEqual(self.player.card_count(), 1)
 
     def test_add_multiple_cards(self):
         """Adding multiple cards should extend the hand."""
-        cards = [Card("2", "Hearts"), Card("3", "Clubs")]
+        cards = [Card("2", "♥️"), Card("3", "♣️")]
         self.player.add_cards(cards)
         self.assertEqual(self.player.card_count(), 2)
 
@@ -43,7 +43,7 @@ class TestPlayer(unittest.TestCase):
 
     def test_play_card_removes_from_hand(self):
         """Playing a card should remove it from the hand."""
-        card = Card("Ace", "Spades")
+        card = Card("Ace", "♠️")
         self.player.add_cards(card)
         played = self.player.play_card()
         self.assertEqual(played.rank, "Ace")
@@ -57,13 +57,13 @@ class TestPlayer(unittest.TestCase):
     def test_has_cards(self):
         """Check has_cards() returns correct boolean."""
         self.assertFalse(self.player.has_cards())
-        self.player.add_cards(Card("King", "Hearts"))
+        self.player.add_cards(Card("King", "♥️"))
         self.assertTrue(self.player.has_cards())
 
     def test_string_representation(self):
         """__str__ should show player name and card count."""
         self.assertEqual(str(self.player), "Noah (0 cards)")
-        self.player.add_cards(Card("5", "Clubs"))
+        self.player.add_cards(Card("5", "♣️"))
         self.assertIn("1 cards", str(self.player))
 
 
