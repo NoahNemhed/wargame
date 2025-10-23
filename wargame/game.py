@@ -58,7 +58,6 @@ class Game:
         else:
             top_card = self.player2.hand[0]
             bottom_card = self.player2.hand[-1]
-            print(f"TOP CARD : {top_card} : BOTTOM CARD : {bottom_card}")
 
             # 80% chance: play the stronger of top / bottom card
             if random.random() < 0.8:
