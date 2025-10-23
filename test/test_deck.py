@@ -53,6 +53,12 @@ class TestDeck(unittest.TestCase):
         self.deck.reset()
         self.assertEqual(self.deck.size(), 52)
 
+    def test_str_representation(self):
+        """__str__ method should return a readable deck description (len of cards)."""
+        s = str(self.deck)
+        self.assertIn("Deck", s)
+        self.assertIn("cards", s)
+
 
 if __name__ == "__main__":
     unittest.main()

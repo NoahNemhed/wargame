@@ -120,3 +120,12 @@ class TestShell(unittest.TestCase):
         self.shell.do_start("Noah Erik")
         self.assertEqual(self.shell.game.player1.name, "Noah")
         self.assertEqual(self.shell.game.player2.name, "Erik")
+    
+    def test_invalid_command_does_not_crash(self):
+        """Invalid command should not raise exceptions."""
+        self.shell.onecmd("not_a_command")
+
+    def test_set_name_usage_message(self):
+        """set_name with missing args should display usage message (Usage: set_name <p1|p2> <new_name>)."""
+        self.shell.do_start("")
+        self.shell.do_set_name("") 

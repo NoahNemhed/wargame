@@ -25,13 +25,13 @@
         "games_lost": 1
     },
     "Computer": {
-        "games_played": 14,
-        "games_won": 6,
+        "games_played": 16,
+        "games_won": 8,
         "games_lost": 8
     },
     "Player 1": {
-        "games_played": 14,
+        "games_played": 16,
         "games_won": 8,
-        "games_lost": 6
+        "games_lost": 8
     }
 }
