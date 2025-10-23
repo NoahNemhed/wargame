@@ -26,8 +26,8 @@ class TestGame(unittest.TestCase):
     def test_handle_war_results_in_winner(self):
         """War should give cards to one player."""
         # Force war situation manually
-        self.game.player1.hand = [Card("5", "Hearts")] + [Card("6", "Clubs")] * 5
-        self.game.player2.hand = [Card("5", "Spades")] + [Card("7", "Diamonds")] * 5
+        self.game.player1.hand = [Card("5", "♥️")] + [Card("6", "♣️")] * 5
+        self.game.player2.hand = [Card("5", "♠️")] + [Card("7", "♦️")] * 5
         result = self.game.play_round()
         self.assertIn("wins", result)
 
