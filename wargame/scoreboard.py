@@ -56,8 +56,8 @@ class Scoreboard:
             rate = (data["games_won"] / games * 100) if games > 0 else 0
             lines.append(
                 f"{name:<15} | "
-                f"Wins: {data['games_won']:<3} | "
-                f"Losses: {data['games_lost']:<3} | "
+                f"🏆 Wins: {data['games_won']:<3} | "
+                f"❌ Losses: {data['games_lost']:<3} | "
                 f"Win rate: {rate:5.1f}%"
             )
         return "\n".join(lines)
