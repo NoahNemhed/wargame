@@ -209,6 +209,6 @@ class WarShell(cmd.Cmd):
         self.game.set_difficulty(level.lower())
         print(f"AI difficulty set to: {level.capitalize()}")
 
-    def do_show_scoreboard(self):
+    def do_show_scoreboard(self, arg):
         """Show the scoreboard with all player statistics."""
         print(self.scoreboard.show())
