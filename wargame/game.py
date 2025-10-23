@@ -107,7 +107,6 @@ class Game:
 
         return result
 
-
     def handle_war(self, pile1, pile2):
         """Handle a 'war' when players draw cards of equal value."""
         result = (

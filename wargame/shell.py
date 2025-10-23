@@ -56,7 +56,7 @@ class WarShell(cmd.Cmd):
         else:
             self.game = Game()
             self.game.start(is_two_player=False)
-        
+
         print(self.game)
 
     def do_set_name(self, arg):
@@ -107,7 +107,7 @@ class WarShell(cmd.Cmd):
         except ValueError:
             print("Invalid number of rounds. Usage: auto_play [num_rounds]")
             return
-        
+
         self.game.auto_mode = True
 
         for _ in range(rounds):
