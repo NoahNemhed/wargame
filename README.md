@@ -6,7 +6,8 @@
 
 
 # 🛠️ Features
-#### ✅ Playing vs computer
+#### ✅ Playing single player vs computer
+#### ✅ Playing multiplayer vs friend
 #### ✅ Computer can play on diffrent levels (normal & hard)
 #### ✅ Players can change name during gameplay
 #### ✅ Scoreboard that is persistent and tracks wins/loses
