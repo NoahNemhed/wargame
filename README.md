@@ -101,3 +101,7 @@
 ## Test coverage 91%
 ## Pylint 9.88/10
 
+
+# Video recording link
+## [text](https://www.youtube.com/watch?v=u-wZTj6sbz0)
+
