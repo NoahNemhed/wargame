@@ -41,7 +41,6 @@ class Game:
 
     def play_round(self):
         """Play one round of the game."""
-
         # Check if game already has a winner
         if not self.player1.has_cards():
             self.winner = self.player2
@@ -74,7 +73,6 @@ class Game:
                 # Hard mode: AI looks at both top and bottom card
                 top_card = self.player2.hand[0]
                 bottom_card = self.player2.hand[-1]
-                
 
                 # 80% chance to play stronger card
                 if random.random() < 0.8:
@@ -95,13 +93,13 @@ class Game:
 
         if card1.value > card2.value:
             self.player1.add_cards([card1, card2])
-            result += f"{self.player1.name} wins the round!"+ "\n"
+            result += f"{self.player1.name} wins the round!" + "\n"
         elif card2.value > card1.value:
             self.player2.add_cards([card1, card2])
             if not getattr(self, "is_two_player", False) and self.difficulty == "hard":
                 # Only shuffle for AI after a win
                 random.shuffle(self.player2.hand)
-            result += f"{self.player2.name} wins the round!"+ "\n"
+            result += f"{self.player2.name} wins the round!" + "\n"
         else:
             result += self.handle_war([card1], [card2])
 

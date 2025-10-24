@@ -61,8 +61,14 @@ class WarShell(cmd.Cmd):
             self.game = Game()
             self.game.start(is_two_player=False)
 
-        mode = "Two-player mode" if self.game.is_two_player else "Single-player vs Computer mode"
-        print(f"\nNew game started between {self.game.player1.name} and {self.game.player2.name}! ({mode})")
+        mode = (
+            "Two-player mode"
+            if self.game.is_two_player
+            else "Single-player vs Computer mode"
+        )
+        print(
+            f"\nNew game started between {self.game.player1.name} and {self.game.player2.name}! ({mode})"
+        )
         print(self.game)
 
     def do_set_name(self, arg):

@@ -97,3 +97,7 @@
 ##### ▶️ pyreverse -o png -p wargame wargame/
 ##### Files will appear in root, so move them to pyreverse folder
 
+# 📊 Application Metrics
+## Test coverage 91%
+## Pylint 9.88/10
+
