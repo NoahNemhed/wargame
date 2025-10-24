@@ -45,7 +45,7 @@
 #### 1️⃣ Start up CMD and navigate to desktop -> cd Desktop
 #### 2️⃣ Clone repository from github -> https://github.com/NoahNemhed/wargame -> cd wargame
 #### 3️⃣ Create a virtual environment -> python -m venv .venv -> Activate venv: . .venv\Scripts\Activate -> Deactivate when done: deactivate
-#### 4️⃣ Install dependencies to run applictaion -> pip install requirements.txt
+#### 4️⃣ Install dependencies to run applictaion -> pip install -r requirements.txt
 #### 5️⃣ Run the game -> python -m wargame.main
 #### 6️⃣ Follow the on-screen commands to play : 
 ## ---------------------------------------------------------------------------------------------------------------
